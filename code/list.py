@@ -57,3 +57,11 @@ class SortedLinkedList:
         data = self.convert_to_dict()
         with open(file, 'w') as f:
             json.dump(data, f)
+
+    def load_from_file(self, file, filenames):
+        with open(file, 'r') as f:
+            data = json.load(f)
+            for word in data:
+                new_node = Node(word, filenames)
+                new_node.freq = data[word]
+                self.insert(new_node)
