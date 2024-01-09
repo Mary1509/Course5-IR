@@ -1,9 +1,11 @@
 import os
 import re
 from sys import argv
+import traceback
 
+import nltk
 from nltk.corpus import stopwords
-# nltk.download('stopwords')
+nltk.download('stopwords')
 
 from list import Node, SortedLinkedList
 
@@ -13,7 +15,7 @@ filenames = []
 
 def print_usage():
     print("Usage:")
-    print("python index <filename>")
+    print("python index.py <filename>")
 
 
 def create_index(filename):
@@ -39,7 +41,7 @@ def create_index(filename):
 
 
 def save_index():
-    with open('results/filenames', 'w') as fd:
+    with open('results/filenames', 'w+') as fd:
         for filename in filenames:
             fd.writelines(filename + '\n')
     node_list.save_to_file('results/index')
@@ -75,6 +77,6 @@ if __name__ == '__main__':
         else:
             raise FileExistsError(inputfile)
     except (FileExistsError, FileNotFoundError) as e:
-        print('No such file or directory')
-        print(e)
+        traceback.print_exc()
         exit(1)
+

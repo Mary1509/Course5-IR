@@ -1,0 +1,17 @@
+version: "3"
+services:
+  index:
+    build: .
+    volumes:
+      - app-volume:/opt/tools
+    command: ['python3', 'index.py', './data/']   # OR change to <path-to-data>, specified in Dockerfile
+  query:
+    build: .
+    depends_on:
+      index:
+        condition: service_completed_successfully
+    volumes:
+      - app-volume:/opt/tools
+    command: [ 'python3', 'query.py', 'city', '-i', './results/index', '-n', './results/filenames' ]   # OR change to: <word> [-i <index> -n <filenames> -h <help>]
+volumes:
+     app-volume:

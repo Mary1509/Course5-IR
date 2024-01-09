@@ -1,10 +1,8 @@
 import os
 import getopt
 from sys import argv
-from nltk.corpus import stopwords
-# nltk.download('stopwords')
 
-from list import Node, SortedLinkedList
+from list import SortedLinkedList
 
 node_list = SortedLinkedList()
 filenames = []
@@ -15,7 +13,7 @@ names = 'results/filenames'
 
 def print_usage():
     print("Usage:")
-    print("python query <word> [-i <index> -n <filenames> -h <help>]")
+    print("python query.py <word> [-i <index> -n <filenames> -h <help>]")
 
 
 def search_in_index(word):

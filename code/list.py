@@ -55,7 +55,7 @@ class SortedLinkedList:
 
     def save_to_file(self, file):
         data = self.convert_to_dict()
-        with open(file, 'w') as f:
+        with open(file, 'w+') as f:
             json.dump(data, f)
 
     def load_from_file(self, file, filenames):
