@@ -26,12 +26,16 @@ command: ['python3', 'index.py', './data/']   # OR change to <path-to-data>, spe
 ...
 command: [ 'python3', 'query.py', 'city', '-i', './results/index', '-n', './results/filenames' ]   # OR change to: <word> [-i <index> -n <filenames> -h <help>]
 ```
-4) Start the containers: 
+4) Build the images:
+```bash
+docker compose build
+```
+5Start the containers: 
 #### This command will show the logs for the container right in console. If you want to omit it, follow the next step
 ```bash
 docker compose up
 ```
-5) (OPTIONAL) Start the containers in detached mode
+6) (OPTIONAL) Start the containers in detached mode
 ```bash
 docker compose up -d
 ```
@@ -40,7 +44,7 @@ docker compose up -d
 docker ps -a
 docker logs <CONTAINER_ID>
 ```
-6) Stop the containers and remove volume:
+7) Stop the containers and remove volume:
 ```bash
 docker compose down -v
 ```
@@ -50,12 +54,14 @@ docker compose down -v
 ## Example of work
 ```bash
 $ docker compose up
-[+] Running 2/2
- ✔ Container code-index-1  Created                                                                                                                                             0.0s 
- ✔ Container code-query-1  Recreated                                                                                                                                           0.2s 
+[+] Running 4/4
+ ✔ Network code_default      Created                                                                                                                                           0.2s 
+ ✔ Volume "code_app-volume"  Created                                                                                                                                           0.0s 
+ ✔ Container code-index-1    Created                                                                                                                                           0.8s 
+ ✔ Container code-query-1    Created                                                                                                                                           0.3s 
 Attaching to code-index-1, code-query-1
 code-index-1  | [nltk_data] Downloading package stopwords to /root/nltk_data...
-code-index-1  | [nltk_data]   Package stopwords is already up-to-date!
+code-index-1  | [nltk_data]   Unzipping corpora/stopwords.zip.
 code-index-1  | Indexing file /opt/tools/data/input2...
 code-index-1  | blend [1, 0, 0]
 code-index-1  | bustling [1, 0, 0]
@@ -270,11 +276,11 @@ code-query-1  | Searching for:  city
 code-query-1  | Using index:  ./results/index
 code-query-1  | Loading index...
 code-query-1  | Searching...
-code-query-1  | city [11, 4, 9]
 code-query-1  | 11 /opt/tools/data/input2
 code-query-1  | 4 /opt/tools/data/input
 code-query-1  | 9 /opt/tools/data/input1
 code-query-1 exited with code 0
+
 $ docker compose down -v
 [+] Running 4/4
  ✔ Container code-query-1  Removed                                                                                                                                             0.0s 

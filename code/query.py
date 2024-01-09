@@ -24,7 +24,6 @@ def search_in_index(word):
         result = []
         res_node = node_list.search(word)
         if res_node:
-            print(res_node.word, res_node.freq)
             for el in res_node.freq:
                 if el != 0:
                     result.append((el, filenames[res_node.freq.index(el)]))
