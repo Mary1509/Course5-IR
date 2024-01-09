@@ -178,7 +178,7 @@ PageRank працює за логарифмічною шкалою, а не за
 
 Формула, за якою обчислюється PageRank наступна (1):
 
-[](https://github.com/Mary1509/Course5-IR/blob/code/formula.png?raw=true)
+[!Formula](formula.png)
 
 де:
 
